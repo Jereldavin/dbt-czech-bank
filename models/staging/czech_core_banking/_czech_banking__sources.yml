@@ -1,0 +1,137 @@
+version: 2
+
+sources:
+  - name: czech_core_banking
+    database: banking_raw_db
+    tables:
+      - name: raw_account
+        columns:
+          - name: account_id
+            data_type: number
+          - name: district_id
+            data_type: number
+          - name: frequency
+            data_type: varchar
+          - name: date
+            data_type: number
+
+      - name: raw_card
+        columns:
+          - name: card_id
+            data_type: number
+          - name: disp_id
+            data_type: number
+          - name: type
+            data_type: varchar
+          - name: issued
+            data_type: varchar
+
+      - name: raw_client
+        columns:
+          - name: client_id
+            data_type: number
+          - name: birth_number
+            data_type: number
+          - name: district_id
+            data_type: number
+
+      - name: raw_disp
+        columns:
+          - name: disp_id
+            data_type: number
+          - name: client_id
+            data_type: number
+          - name: account_id
+            data_type: number
+          - name: type
+            data_type: varchar
+
+      - name: raw_district
+        columns:
+          - name: district_id
+            data_type: number
+          - name: district_name
+            data_type: varchar
+          - name: region
+            data_type: varchar
+          - name: no_of_inhabitants
+            data_type: number
+          - name: no_of_municipalities_gt_499
+            data_type: number
+          - name: no_of_municipalities_500_1999
+            data_type: number
+          - name: no_of_municipalities_2000_9999
+            data_type: number
+          - name: no_of_municipalities_gt_10000
+            data_type: number
+          - name: no_of_cities
+            data_type: number
+          - name: ratio_of_urban_inhabitants
+            data_type: number
+          - name: average_salary
+            data_type: number
+          - name: unemployment_rate_95
+            data_type: number
+          - name: unemployment_rate_96
+            data_type: number
+          - name: no_of_enterpreneurs_per_1000
+            data_type: number
+          - name: no_of_commited_crimes_95
+            data_type: number
+          - name: no_of_commited_crimes_96
+            data_type: number
+
+      - name: raw_loan
+        columns:
+          - name: loan_id
+            data_type: number
+          - name: account_id
+            data_type: number
+          - name: date
+            data_type: number
+          - name: amount
+            data_type: number
+          - name: duration
+            data_type: number
+          - name: payments
+            data_type: number
+          - name: status
+            data_type: varchar
+
+      - name: raw_order
+        columns:
+          - name: order_id
+            data_type: number
+          - name: account_id
+            data_type: number
+          - name: bank_to
+            data_type: varchar
+          - name: account_to
+            data_type: varchar
+          - name: amount
+            data_type: number
+          - name: k_symbol
+            data_type: varchar
+
+      - name: raw_trans
+        columns:
+          - name: trans_id
+            data_type: number
+          - name: account_id
+            data_type: number
+          - name: date
+            data_type: number
+          - name: type
+            data_type: varchar
+          - name: operation
+            data_type: varchar
+          - name: amount
+            data_type: number
+          - name: balance
+            data_type: number
+          - name: k_symbol
+            data_type: varchar
+          - name: bank
+            data_type: varchar
+          - name: account
+            data_type: varchar
