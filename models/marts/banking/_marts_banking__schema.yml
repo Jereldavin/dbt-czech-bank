@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Kimball Customer 360 Dimension"
+    columns:
+      - name: customer_key
+        tests:
+          - unique
+          - not_null
+      - name: gender
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['MALE', 'FEMALE']
+
+  - name: dim_accounts
+    description: "Bank Account Dimension"
+    columns:
+      - name: account_key
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_transactions
+    description: "Atomic Transaction Grain Fact Table"
+    columns:
+      - name: transaction_pk
+        tests:
+          - unique
+          - not_null
+      - name: account_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_accounts')
+                field: account_key
+      - name: customer_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_key
+
+  - name: fact_loans
+    description: "Loan Lifecycle Accumulating Snapshot Fact Table"
+    columns:
+      - name: loan_key
+        tests:
+          - unique
+          - not_null
+      - name: is_delinquent_flag
+        tests:
+          - not_null
